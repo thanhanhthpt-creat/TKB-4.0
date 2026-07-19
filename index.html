@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Thời Khóa Biểu - Vercel</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Icons -->
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="glass-header">
+        <div class="logo">
+            <i class='bx bx-calendar-star'></i>
+            <span>AI TKB <span>Edu</span></span>
+        </div>
+        <div class="header-actions">
+            <button id="btn-open-settings" class="btn-settings warning">
+                <i class='bx bx-key'></i>
+                <span>Lấy API key để sử dụng app</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="app-container">
+        <!-- Sidebar / Tabs Navigation -->
+        <aside class="sidebar glass-panel">
+            <ul class="tab-list">
+                <li class="tab-item active" data-tab="tab-data">
+                    <i class='bx bx-data'></i>
+                    <span>1. Dữ Liệu</span>
+                </li>
+                <li class="tab-item" data-tab="tab-constraints">
+                    <i class='bx bx-slider-alt'></i>
+                    <span>2. Ràng Buộc</span>
+                </li>
+                <li class="tab-item" data-tab="tab-results">
+                    <i class='bx bx-bar-chart-alt-2'></i>
+                    <span>3. Kết Quả</span>
+                </li>
+                <li class="tab-item" data-tab="tab-logs">
+                    <i class='bx bx-terminal'></i>
+                    <span>4. Nhật Ký</span>
+                </li>
+            </ul>
+        </aside>
+
+        <!-- Content Area -->
+        <section class="content-area glass-panel">
+            <!-- TAB 1: Dữ Liệu -->
+            <div id="tab-data" class="tab-content active">
+                <h2><i class='bx bx-cloud-upload'></i> Tải Lên Dữ Liệu</h2>
+                <p class="subtitle">Nhập các tệp cần thiết để tiến hành lập Thời Khóa Biểu tự động.</p>
+                
+                <div class="form-group">
+                    <label>Năm học:</label>
+                    <input type="text" class="input-field" value="2026-2027">
+                </div>
+
+                <div class="file-upload-group">
+                    <div class="file-drop-zone">
+                        <i class='bx bx-file-blank'></i>
+                        <span>Kéo thả tệp <b>Phân công chuyên môn</b> (PDF) hoặc Click để chọn</span>
+                        <input type="file" accept=".pdf" class="hidden-file">
+                    </div>
+                    <div class="file-drop-zone">
+                        <i class='bx bx-table'></i>
+                        <span>Kéo thả tệp <b>Khung Thời Khóa Biểu</b> (Excel) hoặc Click để chọn</span>
+                        <input type="file" accept=".xlsx, .xls" class="hidden-file">
+                    </div>
+                </div>
+
+                <div class="action-footer">
+                    <button class="btn btn-secondary" id="btn-validate">KIỂM TRA DỮ LIỆU</button>
+                    <button class="btn btn-primary" id="btn-schedule">XẾP THỜI KHÓA BIỂU</button>
+                </div>
+
+                <!-- Progress Bar -->
+                <div class="progress-container hidden" id="progress-container">
+                    <div class="progress-label">
+                        <span id="progress-text">Đang xử lý...</span>
+                        <span id="progress-percent">0%</span>
+                    </div>
+                    <div class="progress-track">
+                        <div class="progress-bar" id="progress-bar"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 2: Ràng Buộc -->
+            <div id="tab-constraints" class="tab-content">
+                <h2><i class='bx bx-slider-alt'></i> Ràng Buộc Nhà Trường</h2>
+                <p class="subtitle">Kích hoạt hoặc vô hiệu hóa các quy tắc xếp lịch chuyên biệt.</p>
+                
+                <div class="constraints-grid">
+                    <label class="checkbox-container">Sáng thứ 2 tiết 1: HĐTN
+                        <input type="checkbox" checked="checked">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="checkbox-container">Sáng thứ 6 tiết 4: HĐTN
+                        <input type="checkbox" checked="checked">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="checkbox-container">Chiều thứ 6 nghỉ học
+                        <input type="checkbox" checked="checked">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="checkbox-container">Một buổi không xếp 2 tiết Toán
+                        <input type="checkbox" checked="checked">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="checkbox-container">Lớp 1 tối đa 3 tiết Tiếng Việt/ngày
+                        <input type="checkbox" checked="checked">
+                        <span class="checkmark"></span>
+                    </label>
+                    <!-- More can be added... -->
+                </div>
+                
+                <div class="action-footer">
+                    <button class="btn btn-primary" id="btn-save-constraints">LƯU CẤU HÌNH</button>
+                </div>
+            </div>
+
+            <!-- TAB 3: Kết Quả -->
+            <div id="tab-results" class="tab-content">
+                <h2><i class='bx bx-bar-chart-alt-2'></i> Kết Quả Thời Khóa Biểu</h2>
+                
+                <div class="result-status">
+                    <div class="status-card">
+                        <h3>Trạng Thái</h3>
+                        <p id="status-label" class="status-text">Chưa chạy</p>
+                    </div>
+                    <div class="status-card">
+                        <h3>Điểm Đánh Giá</h3>
+                        <p id="score-label" class="status-text">--/100</p>
+                    </div>
+                </div>
+
+                <div class="action-footer">
+                    <button class="btn btn-secondary" disabled>MỞ FILE KẾT QUẢ</button>
+                    <button class="btn btn-primary" disabled>TẢI XUỐNG TKB</button>
+                </div>
+            </div>
+
+            <!-- TAB 4: Nhật Ký -->
+            <div id="tab-logs" class="tab-content">
+                <h2><i class='bx bx-terminal'></i> Nhật Ký Hệ Thống</h2>
+                <div class="terminal-box" id="log-terminal">
+                    <div class="log-entry">[System] Chào mừng đến với AI TKB Web App.</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- MODAL: API KEY SETTINGS -->
+    <div id="modal-settings" class="modal-overlay hidden">
+        <div class="modal-box glass-panel">
+            <div class="modal-header">
+                <h3>Cấu Hình AI Gemini</h3>
+                <button class="btn-close" id="btn-close-modal"><i class='bx bx-x'></i></button>
+            </div>
+            <div class="modal-body">
+                <p class="modal-desc">Vui lòng cung cấp API Key để sử dụng tính năng AI. Dự án sử dụng cơ chế Fallback model tự động.</p>
+                
+                <div class="form-group">
+                    <label>Google Gemini API Key:</label>
+                    <input type="password" id="input-api-key" class="input-field" placeholder="Nhập API Key bắt đầu bằng AIza...">
+                    <small><a href="https://aistudio.google.com/api-keys" target="_blank" rel="noopener noreferrer">Lấy API Key tại Google AI Studio</a></small>
+                </div>
+
+                <div class="model-selection">
+                    <label>Thứ tự Model Ưu Tiên (Cơ chế Fallback):</label>
+                    <div class="model-cards">
+                        <div class="model-card default">
+                            <span class="badge">1. Mặc định</span>
+                            <strong>gemini-3-flash-preview</strong>
+                        </div>
+                        <div class="model-card">
+                            <span class="badge">2. Dự phòng 1</span>
+                            <strong>gemini-3-pro-preview</strong>
+                        </div>
+                        <div class="model-card">
+                            <span class="badge">3. Dự phòng 2</span>
+                            <strong>gemini-2.5-flash</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="test-result-message" class="hidden"></div>
+
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="btn-test-api">KIỂM TRA KẾT NỐI</button>
+                <button class="btn btn-primary" id="btn-save-api">LƯU CẤU HÌNH</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/ai_service.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

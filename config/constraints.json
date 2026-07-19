@@ -1,0 +1,14 @@
+{
+  "lock_monday_hdt": true,
+  "lock_friday_hdt": true,
+  "friday_afternoon_off": true,
+  "one_math_per_session": true,
+  "grade1_vietnamese_max3": true,
+  "grade2_vietnamese_max2": true,
+  "grade345_vietnamese_pair": true,
+  "teacher_ba_two_afternoons": true,
+  "teacher_my_one_afternoon": true,
+  "no_teacher_collision": true,
+  "no_class_collision": true,
+  "preserve_assignment": true
+}

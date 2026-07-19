@@ -1,0 +1,34 @@
+GIAI ĐOẠN 3 - BỘ GIẢI TỰ ĐỘNG
+
+1. Chuẩn hóa dữ liệu phân công PDF thành:
+   Giáo viên - Môn - Lớp - Số tiết.
+
+2. Tạo 32 ô học/tuần cho mỗi lớp:
+   - Sáng thứ 2 đến thứ 6: 4 tiết.
+   - Chiều thứ 2 đến thứ 5: 3 tiết.
+   - Chiều thứ 6 nghỉ.
+
+3. Tạo biến quyết định:
+   x[lớp, môn, giáo viên, ô thời gian] thuộc {0,1}.
+
+4. Ràng buộc cứng:
+   - Mỗi ô của lớp có đúng 1 môn.
+   - Giáo viên không dạy 2 lớp cùng lúc.
+   - Đủ số tiết môn/lớp.
+   - HĐTN cố định.
+   - Không thay đổi giáo viên.
+   - Thầy Ba 2 buổi chiều; cô My 1 buổi chiều.
+   - Quy tắc Toán và Tiếng Việt.
+
+5. Hàm mục tiêu:
+   - Giảm tiết trống giáo viên.
+   - Dàn đều môn.
+   - Hạn chế tiết chờ.
+   - Ưu tiên lịch liền mạch.
+
+6. Xuất:
+   - TKB theo lớp.
+   - TKB theo giáo viên.
+   - Đối chiếu tiết.
+   - Xung đột.
+   - Nhật ký.
